@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.hyperledger.fabric.protos.peer";
+option java_outer_classname = "AdminPackage";
+option go_package = "github.com/hyperledger/fabric/protos/peer";
+
+package protos;
+
+import "empty.proto";
+
+// Interface exported by the server.
+service Admin {
+    // Return the serve status.
+    rpc GetStatus(google.protobuf.Empty) returns (ServerStatus) {}
+}
+
+message ServerStatus {
+
+    enum StatusCode {
+        UNDEFINED = 0;
+        STARTED = 1;
+        STOPPED = 2;
+        PAUSED = 3;
+        ERROR = 4;
+        UNKNOWN = 5;
+    }
+
+    StatusCode status = 1;
+
+}
